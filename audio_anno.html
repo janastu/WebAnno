@@ -68,11 +68,24 @@ function pauseAudio() {
   <tr>
     <td>1</td>
     <td>Street Vendor English version</td>
-    <td><input type="text" placeholder="Add Tag"></input></td>
+    <td>
+        <input type="text" id="myText" placeholder="tag add" >
+        <button onclick="myFunction()">Try it</button>
+        <p id="demo"></p>
+    </td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><a href="D:\Git_test\WebAnno\Street_vendors\Street_vendors_Sound\SV_english.mp3" target="_blank" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-play-circle"></span> Play</td>
     </tr>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myText").value;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+
 
   <tr>
     <td>2</td>
