@@ -26,10 +26,6 @@
       </nav>
     </div>
 </div>
-       
-
-
-
 <div align="center">
   <div><h1>AUDIO ANNOTATIONS</h1></div>
 
@@ -48,6 +44,17 @@ td, th {
 }
 
 </style>
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    x.play(); 
+} 
+
+function pauseAudio() { 
+    x.pause(); 
+} 
+</script>
 </head>
 <body>
 <table align="center">
@@ -63,31 +70,33 @@ td, th {
     <td>Street Vendor English version</td>
     <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
-    <td><a href="F:\WebAnno\Street_vendors_Sound\SV_english.mp3" target="_blank" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
+    <td><a href="D:\Git_test\WebAnno\Street_vendors\Street_vendors_Sound\SV_english.mp3" target="_blank" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-play-circle"></span> Play</td>
     </tr>
 
   <tr>
     <td>2</td>
     <td>Street Vendor Kannada version</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><audio controls>
-        <source src="F:/WebAnno/Street_vendors_Sound/SV_kannada.mp3" type="audio/mpeg">
+        <source src="D:\Git_test\WebAnno\Street_vendors\Street_vendors_Sound/SV_kannada.mp3" type="audio/mpeg">
     </audio></td>
     </tr>
   <tr>
     <td>3</td>
     <td>Song_one</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
-    <td><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
+    <td><audio id="myAudio">
+  <source src="D:\Git_test\WebAnno\Street_vendors\Street_vendors_Sound/SV_kannada.mp3" type="audio/ogg"></audio>
+        <button onclick="playAudio()" type="button">Play</button>
+        <button onclick="pauseAudio()" type="button">Pause</button></td>
     </tr>
     <tr>
     <td>4</td>
     <td>Song_two</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -95,7 +104,7 @@ td, th {
     <tr>
     <td>5</td>
     <td>Song_three</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -103,7 +112,7 @@ td, th {
     <tr>
     <td>6</td>
     <td>Song_four</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -111,7 +120,7 @@ td, th {
     <tr>
     <td>7</td>
     <td>Song_five</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -119,7 +128,7 @@ td, th {
     <tr>
     <td>8</td>
     <td>Song_six</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -127,7 +136,7 @@ td, th {
     <tr>
     <td>9</td>
     <td>Song_seven</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -135,7 +144,7 @@ td, th {
     <tr>
     <td>10</td>
     <td>Song_eight</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -143,7 +152,7 @@ td, th {
     <tr>
     <td>11</td>
     <td>Song_nine</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -151,7 +160,7 @@ td, th {
     <tr>
     <td>12</td>
     <td>Song_ten</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -159,7 +168,7 @@ td, th {
     <tr>
     <td>13</td>
     <td>Song_11</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -167,7 +176,7 @@ td, th {
     <tr>
     <td>14</td>
     <td>Song_12</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -175,7 +184,7 @@ td, th {
     <tr>
     <td>15</td>
     <td>Song_13</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
@@ -183,7 +192,7 @@ td, th {
     <tr>
     <td>16</td>
     <td>Song_14</td>
-    <td>input text</td>
+    <td><input type="text" placeholder="Add Tag"></input></td>
     <td><a href="http://transcribe.test.openrun.net/">Click to transcribe</a></td>
     <td><button type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-play-circle"></span> Play</button></td>
