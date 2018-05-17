@@ -1,79 +1,26 @@
-/*Body style*/
-body{        
-        padding-top: 60px;
-        padding-bottom: 40px;
-    }
-h1{
-        text-shadow: inherit;
-        color: #4d0000;
-    }
-h5{
-        margin-top: 2rem;
-        margin-bottom: 3rem;
-    }
-    .container{
-        width: 80%;
-        margin: 0 auto; /* Center the DIV horizontally */
-    }
-    .fixed-header, .fixed-footer{
-        width: 100%;
-        position: fixed;        
-        background: #333;
-        padding: 10px 0;
-        color: #fff;
-    }
-    .fixed-header{
-        top: 0;
-    }
-    .fixed-footer{
-        bottom: 0;
-    }    
-/*Header style*/  
-    nav a{
-        color: #fff;
-        text-decoration: none;
-        padding: 7px 25px;
-        display: inline-block;
-    }
-    .container p{
-        line-height: 200px; /* Create scrollbar to test positioning */
-    }
-/*Footer style*/
-.footer-text{
-    text-align: center;
+.footer {
+   position: inherit;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   margin-top: 10px;
+   color: white;
+   text-align: center;
 }
 
-/* audio heading*/
-.aud1{
-   
+.replicate{
+    margin-top: 7rem;
 }
 
-
-img{
-    width:10px;
-    height:10px;
-    display: none;
-    position: relative;
-    left:40px;
-    transition: opacity .35s ease;
+div {
+    text-align: justify;
+    text-justify: inter-word;
 }
 
-/* audio hover */
-.aud1:hover img {
-    margin-top:0.5rem;
-    margin-bottom:0.5rem;
-    display:block;
-    align-items: center;
-    width:1rem;
-    height:1rem;
-    background-color: #99A3A4;
-    opacity: 2!important;
-}
-.aud1:hover {
-    display:inline-table;
-    align-items: center;
-    width: 28rem;
-    height:5rem;
-    background-color: #99A3A4;
-    opacity: 2!important;
+#logo {
+height : 200%;
+margin-top: -10px;
+margin-right: 5px;
+margin-bottom: -5px;
+
 }
