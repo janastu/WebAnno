@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <script data-main="scripts/main" src="require.js"></script>
+  <script>
+    function myFunction() {
+        var x = document.getElementById("myText").value;
+        document.getElementById("demo").innerHTML = x;
+    }
+</script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <div class="caption">
+        <img id="logo" src="logo1.jpg"/>
+        <label>WEB ANNO</label>
+      </div>
+      <!--a class="navbar-brand" href="#"><img id="logo" src="logo1.jpg"/>Web Anno</a-->
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="navmenu"> 
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Services <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">TEXT</a></li>
+          <li><a href="#">AUDIO</a></li>
+          <li><a href="#">VEDIO</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Contacts</a></li>
+    </ul>
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="get-the-link" id="myText">
+      </div>
+      <button class="btn btn-default" onclick="myFunction()">STARTAnnotate</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+    </div>
+    </div>
+  </div>
+</nav>
+  
+  <div class="container">
+    <div id="hello">
+      <div class="replicate">
+          <p id="demo"><h1>The page to be used for annotation</h1> </p>
+      </div>
+    <center>
+    <button onclick="GetSelectedText()">Get the selected text!</button>
+    <button onclick="replaceSelectedText()">Replace selected text!</button>
+    <button onclick="highlightText()">Highlight text!</button></center></br>
+    <button onclick="generate_json_file()">Click to see json file</button>
+    </center>
+    </br>
+
+  
+    <p class='example'> The Web Annotation Working Group has published three Recommendations for expressing annotations on the Web: the Web Annotation Data Model [annotation-model]; the Web Annotation Vocabulary [annotation-vocab]; and the Web Annotation Protocol [annotation-protocol]. These Recommendations define a serialization of the Model in a new, Web annotation-specific profile of JSON-LD [json-ld].
+
+    This Note describes and illustrates potential approaches for including annotations within HTML documents. Examples also are included illustrating the use within an HTML document of annotation Selectors as fragment identifiers. (The Working Group's Selectors and States Reference Note [selectors-states] defines the syntax used for Selectors as fragment identifiers.)
+
+    The approaches described in this document are incomplete and preliminary. They do not exhaust the full range of feasible options. The approaches discussed in this note have emerged from Working Group discussions and should be considered no more than initial starting points for further discussion, experimentation and development.</p>
+    <center> <img src="flower.jpg" alt="Flower-for-the-day" height="300" width="400"> </center></br>
+    <p class='example1'> The Web Annotation Working Group has published three Recommendations for expressing annotations on the Web: the Web Annotation Data Model [annotation-model]; the Web Annotation Vocabulary [annotation-vocab]; and the Web Annotation Protocol [annotation-protocol]. These Recommendations define a serialization of the Model in a new, Web annotation-specific profile of JSON-LD [json-ld].
+
+    This Note describes and illustrates potential approaches for including annotations within HTML documents. Examples also are included illustrating the use within an HTML document of annotation Selectors as fragment identifiers. (The Working Group's Selectors and States Reference Note [selectors-states] defines the syntax used for Selectors as fragment identifiers.)
+
+    The approaches described in this document are incomplete and preliminary. They do not exhaust the full range of feasible options. The approaches discussed in this note have emerged from Working Group discussions and should be considered no more than initial starting points for further discussion, experimentation and development.</p>
+  </div>
+</div>
+<script type="text/javascript">
+var add_arr=[];
+var arr_text=[];
+var data ={
+    "@context": "http://schema.org/",
+    "id": "file:///C:/Users/Ashwini/Desktop/An/anno.html",
+    "type": "Annotation",
+    "motivation": "editing",
+
+    "target": {
+        "source": "file:///C:/Users/Ashwini/Desktop/An/anno.html",
+        "selector": {
+            "type": "CssSelector",
+            "value": "#hello.p"
+        }
+    },
+
+    "body": {
+        "type": "TextualBody",
+        "value":"",
+        "format": "text/plain",
+        "language": "en"
+    },
+
+    "created": "2017-01-26T17:30:04.639Z",
+    "creator": {
+        "type": "Person",
+        "email": "ashwinij859@gmail.com",
+        "name": "Ashu"
+    }
+};
+
+function GetSelectedText () {
+            if (window.getSelection) {  // all browsers, except IE before version 9
+                var range = window.getSelection();   // window object represents an open window in a browser. Returns a Selection object representing the range of text selected by the user
+                rag = range.toString();    // converts range array  into a String 
+                //var html1 = '<span id="selected" style="background-color:red;">' + rag + '</span>'
+                //console.log(rag);                                
+                alert (range.toString ()); // Displays alert message which contains selected text bu user
+            }
+            
+            add_arr.push(rag);
+            console.log(add_arr);
+
+        }
+
+
+
+  function replaceSelectedText() {
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection(); 
+       console.log(sel);
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            //console.log(sel.getRangeAt(-1));
+            range.deleteContents(); //removes the contents of the Range from the document.
+            range.insertNode(document.createTextNode(data.body.value));//The new node is inserted at the start boundary point of the Range.
+         }
+          
+      } 
+  }
+  function highlightText() {
+    var sel, range, node,selected_text;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        selected_text=sel.toString();
+        //console.log(selected_text);
+
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = window.getSelection().getRangeAt(0);
+          
+            var html = '<span id="span_id" style="background-color:yellow;">' + range + '</span>'
+            range.deleteContents();
+            
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            //console.log(el.innerHTML);
+
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                //console.log(node);
+                lastNode = frag.appendChild(node);
+                //console.log(lastNode);
+            }
+            range.insertNode(frag);
+            //console.log(frag);
+        }
+    } 
+    else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        range.collapse(false);
+        range.pasteHTML(html);
+    }
+    
+    arr_text.push(selected_text);
+    console.log(arr_text);
+    //console.log(data.body.value);
+    data.body.value=arr_text[arr_text.length-1];
+    console.log(data.body.value);
+  }   
+ 
+ function generate_json_file(){
+ var fs = require("fs");
+ fs.writeFile("./object.json", JSON.stringify(data), (err) => {
+    if (err) {
+        console.error(err);
+        return;
+    };
+    console.log("File has been created");
+});
+
+}
+  </script>
+<div class="navbar navbar-inverse">
+    <p class="footer">Copyright &copy; 2018 Servelots InfoTech Private Ltd, Bengaluru  <p>    
+</div>
+</body>
+
+</html>
