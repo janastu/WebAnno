@@ -17,7 +17,7 @@
     }
      
     //Below section is for Implementing the storage
-    jQuery("#content").annotator().annotator('addPlugin','Tags','Offline', {
+    jQuery("#content").annotator().annotator('addPlugin','Offline', {
       /* online:  function () {
        jQuery("#status").text("Online");
        },*/
@@ -71,19 +71,28 @@ var export_fun= function exportToJsonFile(jsonData) {
 
 
 //bUTTON CLICK FOR EXPORT ANNOTATION
-    jQuery("#export-anno").click(function(){
+   jQuery("#export-anno").click(function(){
       var newarr_check=[];
       //alert("export button pressed");
       //export_fun(localStorage.getItem("annotat.offline.annotation.))
       for ( var i = 0, len = localStorage.length; i < len; ++i ) {
        var check= JSON.parse(localStorage.getItem( localStorage.key( i )));
        newarr_check.push(check);
+      // console.log(newarr_check.quote);
      }
-     //console.log("new",newarr_check);
-      export_fun(newarr_check);
-
-    })
-
+      //console.log("new",newarr_check);
+      //export_fun(newarr_check);
+      
+      var x=[];
+      for ( var i = 0, len = newarr_check.length; i < len; ++i ) {
+         x=newarr_check[i];
+         console.log(newarr_check.length, x);
+         console.log(x.Key);
+         console.log(x.quote);
+     }
+      
+     
+     })
     
      //Clears the stored content in local storage on button click
      jQuery("#clear-storage").click(function () {
@@ -96,9 +105,17 @@ var export_fun= function exportToJsonFile(jsonData) {
      // sidebar
 
      // template function to build html
-
+        
 
      // function to iterate over data and compile with html template
+     
+    
+  //var s = '{"first_name" : "Sammy", "last_name" : "Shark", "location" : "Ocean"}';
+
+  //var obj = JSON.parse(s);
+
+  
+
 
      //function to render in DOM
      
