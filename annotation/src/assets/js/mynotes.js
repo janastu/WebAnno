@@ -17,7 +17,7 @@
     }
      
     //Below section is for Implementing the storage
-    jQuery("#content").annotator().annotator('addPlugin','Tags','Offline', {
+    jQuery("#content").annotator().annotator('addPlugin','Offline', {
       /* online:  function () {
        jQuery("#status").text("Online");
        },*/
