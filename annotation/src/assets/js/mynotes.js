@@ -244,7 +244,7 @@
 
                   if(dependency[i].substr(dependency[i].length-3) === ".js"){
                       var script = document.createElement("script"); /* Make a script DOM node*/
-                        script.src = "/WebAnno/WebAnno/annotation/"+dependency[i]; /* Set it"s src to the provided URL*/
+                        script.src = "/WebAnno/annotation/"+dependency[i]; /* Set it"s src to the provided URL*/
                         script.type = "text/javascript";
                         document.head.appendChild(script); /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
               
@@ -255,7 +255,7 @@
                     
                       var link = document.createElement("link"); 
                       link.rel = "stylesheet";
-                      link.href = "/WebAnno/WebAnno/annotation/"+dependency[i]; 
+                      link.href = "/WebAnno/annotation/"+dependency[i]; 
                       document.head.appendChild(link); 
                 }
 
