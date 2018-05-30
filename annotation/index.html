@@ -4,12 +4,12 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="src/assets/css/styles.css">
+  <!--link rel="stylesheet" href="src/assets/css/styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="src/assets/js/js_libraries/annotator-full.1.2.10/annotator.min.css" />
-  <link rel="stylesheet" href="src/assets/js/js_libraries/anno.touch/annotator.touch.css" />
+  <link rel="stylesheet" href="src/assets/js/js_libraries/anno.touch/annotator.touch.css" /-->
  
 </head>
 
@@ -22,9 +22,9 @@
     <div class="col-sm-9">
       <!--h4><small>START ANNOTATING</small></h4-->
       <!--p>Current Connectivity: <span id="status"></span></p-->
-        <button id="clear-storage">Clear LocalStorage</button>
+        <!--button id="clear-storage">Clear LocalStorage</button>
         <button id="export-anno">Export annotation</button>
-        <button id="start-anno">Start annotating</button></p>
+        <button id="start-anno">Start annotating</button></p-->
             <div id="content">
               <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.</p>
 
@@ -39,47 +39,47 @@
            </div>
         </div>
 
-        <div class="col-sm-3 sidenav">
-        <h4>Annotate myNotes</h4>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search tag">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div><br>
+                      <!--div class="col-sm-3 sidenav">
+                      <h4>Annotate myNotes</h4>
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search tag">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                          </button>
+                        </span>
+                      </div><br>
 
 
-        <div class="container annotation-preview">
-        <h3>Look for annotation</h3>
-        <div id="annotations">
-          <!--ul class="nav nav-pills nav-stacked">
-            <li class="list-of-annotations"> 
-              <div class="anno-sidebar-text">
-                <ul class="annotation-header">
-                  <li class="annotation-text">
-                      First Annotation
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul><br>
-              <ul class="nav nav-pills nav-stacked">
-                <li class="list-of-annotations"> 
-                  <div class="anno-sidebar-text">
-                    <ul class="annotation-header">
-                      <li class="annotation-text">
-                          <p>Second Annotation</p>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-              <br-->
-          </div>
-      </div>
-    </div>
+                                <div class="container annotation-preview">
+                                <h3>Look for annotation</h3>
+                                <div id="annotations">
+                                  <ul class="nav nav-pills nav-stacked">
+                                    <li class="list-of-annotations"> 
+                                      <div class="anno-sidebar-text">
+                                        <ul class="annotation-header">
+                                          <li class="annotation-text">
+                                              First Annotation
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </li>
+                                  </ul><br>
+                                      <ul class="nav nav-pills nav-stacked">
+                                        <li class="list-of-annotations"> 
+                                          <div class="anno-sidebar-text">
+                                            <ul class="annotation-header">
+                                              <li class="annotation-text">
+                                                  <p>Second Annotation</p>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </li>
+                                      </ul>
+                                      <br>
+                                  </div>
+                              </div>
+                          </div-->
 </div>
 </div>
 
@@ -102,7 +102,7 @@
 }
 
 var annoTemplate=function(content){
-  return `<ul class="nav nav-pills nav-stacked">
+  return `<ul class="list-unstyled nav nav-pills nav-stacked">
               <li class="list-of-annotations"> 
                 <div class="anno-sidebar-text">
                   <ul class="annotation-header">
@@ -126,14 +126,14 @@ addTemplate=function(){
 }
 }
 
-addTemplate();
+//addTemplate();
 </script>
 
-  <script type="text/javascript" src="src/assets/js/js_libraries/jquery.js"> </script>
+  <!--script type="text/javascript" src="src/assets/js/js_libraries/jquery.js"> </script>
   <script type="text/javascript" src="src/assets/js/js_libraries/highlighter.js"></script>
   <script type="text/javascript" src="src/assets/js/js_libraries/annotator-full.1.2.10/annotator-full.min.js"></script>
   <script type="text/javascript" src="src/assets/js/js_libraries/anno.touch/annotator.touch.js"></script>
-  <script  type="text/javascript" src="src/assets/js/js_libraries/annotator.offline.min.js"></script>
+  <script  type="text/javascript" src="src/assets/js/js_libraries/annotator.offline.min.js"></script-->
   <script type="text/javascript" src="src/assets/js/mynotes.js"></script>
 
 </body>
