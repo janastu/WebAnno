@@ -19,9 +19,9 @@
     App.data = App.getAnnos();
 
         App.$aside = document.getElementById("sidebar-container");
-        //App.$startAnnoBtn = document.getElementById("start-anno");
-        //App.$exportAnnoBtn = document.getElementById("export-anno");
-        //App.$clearStorageBtn = document.getElementById("clear-storage");
+        /*App.$startAnnoBtn = document.getElementById("start-anno");
+        App.$exportAnnoBtn = document.getElementById("export-anno");
+        App.$clearStorageBtn = document.getElementById("clear-storage");*/
 
     /* Bind events
     App.bindEvents();*/
@@ -37,8 +37,9 @@
 
   App.render = function() {
     /*Render app here*/
-    App.$aside.innerHTML = "Looking for Annotation"; //cleaning the sidebar column in order to not relpicate old annotations
-    //App.SidebarTemplate();
+    /*cleaning the sidebar column in order to not relpicate old annotations*/
+    App.$aside.innerHTML = "Look for Annotation";  
+    /*App.SidebarTemplate();*/
     var nodes = App.sideAnnoTpl();
     for(var i = 0; i < nodes.length; i++){
             App.$aside.append(nodes[i]);
@@ -73,8 +74,13 @@
         if (annotator) {
           annotator.plugins.Offline.store.clear();
         }
-      }
+      },
+
+      refreshPage : function () {
+          document.location.reload();
     }
+
+  }
   
   
 /* ======================================================================*/
@@ -103,7 +109,7 @@
          offline: function () {
          jQuery("#status").text("Offline");
 
-         //console.log("load offline plugin", this);
+         /*console.log("load offline plugin", this);*/
 
          }  
        });
@@ -211,9 +217,9 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
         App.buttonCreater= function(){
 
-                  var button_id = ["start-anno","export-anno","clear-storage"];
-                  var button_text = ["StartAnnotating","ExportAnnotation","Clear localStorage"];
-                  var events = ["startAnnoBtn","exportAnnoBtn","clearStorageBtn"];
+                  var button_id = ["start-anno","export-anno","clear-storage","exit-annotation"];
+                  var button_text = ["StartAnnotating","ExportAnnotation","Clear localStorage","exit-annotation"];
+                  var events = ["startAnnoBtn","exportAnnoBtn","clearStorageBtn","refreshPage"];
                   var Annotations_list = document.createElement("h1");
                   Annotations_list.innerText = "Annotation List";
                   Annotations_list.id = "anno-list";
@@ -221,7 +227,8 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
                   for(var k=0; k< button_id.length; k++){
                     button_id[k]=document.createElement("button");
-                    //button_id[k].className = "btn btn-primary ";
+                    button_id[k].id = "annobtn";
+                    /*button_id[k].className = "btn btn-primary ";*/
                     button_id[k].innerText=button_text[k];
                     button_id[k].addEventListener("click", App.bindEvents[events[k]]);
                     document.body.prepend(button_id[k]);
@@ -259,18 +266,20 @@ TODO: Function to create sidebar column */
 
                           if(dependency[i].substr(dependency[i].length-3) === ".js"){
                                 var script = document.createElement("script"); /* Make a script DOM node*/
-                                script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
-                                //script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; /* Set it"s src to the provided URL*/
+                                //script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                                /* Set it"s src to the provided URL*/
+                                script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i];
                                 script.type = "text/javascript";
-                                document.head.appendChild(script); /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
+                                document.head.appendChild(script); 
+                                /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
                             }
                           
                           else{
                             
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
-                              link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
-                              //link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
+                              //link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                              link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
                               document.head.appendChild(link); 
                              }
                       }
@@ -284,6 +293,4 @@ TODO: Function to create sidebar column */
            }
         App.dependency_Fun(App.dependencies);
         
-
-/*App.init();*/           
 })();
