@@ -259,8 +259,8 @@ TODO: Function to create sidebar column */
 
                           if(dependency[i].substr(dependency[i].length-3) === ".js"){
                                 var script = document.createElement("script"); /* Make a script DOM node*/
-                                //script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
-                                script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; /* Set it"s src to the provided URL*/
+                                script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                                //script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; /* Set it"s src to the provided URL*/
                                 script.type = "text/javascript";
                                 document.head.appendChild(script); /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
                             }
@@ -269,7 +269,8 @@ TODO: Function to create sidebar column */
                             
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
-                              link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
+                              link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                              //link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
                               document.head.appendChild(link); 
                              }
                       }
