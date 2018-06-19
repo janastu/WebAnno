@@ -108,7 +108,6 @@
          offline: function () {
          jQuery("#status").text("Offline");
          /*console.log("load offline plugin", this);*/
-
           /*setAnnotationData: function (ann) {
             // Add page specific data to the annotation on creation.
             if (!ann.page) {
@@ -119,8 +118,6 @@
             // Return true if the annotation should be loaded into the current view.
             return ann.page === getCurrentPage();
           }*/
-
-         
         }
 
        });

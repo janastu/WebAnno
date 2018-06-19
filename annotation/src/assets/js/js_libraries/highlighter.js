@@ -1,3 +1,5 @@
+
+
 /*jshint immed:false*/ /*globals Range*/
 (function (module, window, document) {
   /* Helper function to provide support for Function.prototype.bind() in

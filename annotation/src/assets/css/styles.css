@@ -73,3 +73,7 @@
       padding : 0px;
       margin : 0.5%;
     }
+
+    .annotator-suggest {
+         text-decoration: line-through;
+    }
