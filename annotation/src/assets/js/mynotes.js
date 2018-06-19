@@ -18,19 +18,19 @@
     /* prepare Data */
     App.data = App.getAnnos();
 
-        App.$aside = document.getElementById("sidebar-container");
+    App.$aside = document.getElementById("sidebar-container");
         /*App.$startAnnoBtn = document.getElementById("start-anno");
         App.$exportAnnoBtn = document.getElementById("export-anno");
         App.$clearStorageBtn = document.getElementById("clear-storage");*/
 
     /* Bind events
     App.bindEvents();*/
+   
+   App.ImageAnnotation();
 
     /*Call Render*/
-
+    
     App.render();
-   
-
   }
 /*=======================================*/
 
@@ -104,14 +104,25 @@
       /*Below section is for Implementing the storage*/
       $(App.ctx).annotator().annotator("addPlugin","Offline", {
         /* online:  function () {
-         jQuery("#status").text("Online");
-         },*/
+         jQuery("#status").text("Online"); },*/
          offline: function () {
          jQuery("#status").text("Offline");
-
          /*console.log("load offline plugin", this);*/
 
-         }  
+          /*setAnnotationData: function (ann) {
+            // Add page specific data to the annotation on creation.
+            if (!ann.page) {
+              ann.page = getCurrentPage(); // getCurrentPage() would return the current page number
+            }
+          },
+          shouldLoadAnnotation: function (ann) {
+            // Return true if the annotation should be loaded into the current view.
+            return ann.page === getCurrentPage();
+          }*/
+
+         
+        }
+
        });
 
       $(App.ctx).annotator().annotator("addPlugin","Tags", {
@@ -119,11 +130,19 @@
            jQuery("#status").tags("Tags"); 
          }
       });
+
+      $(App.ctx).annotator().annotator("addPlugin","SuggestEdit", "This is Annotation");
+
+      
+
+
+      /*$(App.ctx).annotator().annotator('addPlugin','Share');*/
+
     
      $(App.ctx).on('annotationCreated', function(anno) { 
               App.data = App.getAnnos(); //
               App.render();
-              console.log(anno);
+              //console.log(anno);
             });
 
 
@@ -202,7 +221,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 /*function to render in DOM */
       App.sideAnnoTpl=function(){
       
-              console.log(App.data);
+              //console.log(App.data);
 
               var nodes = [];
               for(var i=0;i < App.data.length;i++){
@@ -235,8 +254,8 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                   }
         }
 
-/*======================================================================
-TODO: Function to create sidebar column */
+/*======================================================================*/
+/*Function to create sidebar column */
    
              App.SidebarTemplate= function(){
                         var annoFrame= document.createElement("div");
@@ -246,7 +265,40 @@ TODO: Function to create sidebar column */
                         }
 
 
-/*=====================================================================================*/
+/*=====================================================================================
+Function to make web images annottable*/
+      imgarr = [];
+      App.ImageAnnotation = function(){
+        imgarr = document.getElementsByTagName("img");
+         for (var i=0; i <= imgarr.length ; i++){
+           anno.makeAnnotatable(imgarr[i]);
+         }
+      }
+
+/*===============================================================================*/
+/* Function to use location   */
+        /*Annotator.Plugin.Location= (function () { 
+          function Location() {}
+
+          Location.prototype.pluginInit = funtcion () {
+            var self = this;
+             navigator.geolocation.getCurrentPosition(function (pos) {
+             self.coords = pos.coords;
+             });
+
+             self.annotator.on('beforeAnnotationCreated', function (ann) {
+              if (self.coords != null) {
+              ann.coords = {};
+              ann.coords.latitude = self.coords.latitude;
+              ann.coords.longitude = self.coords.longitude;
+              ann.coords.accuracy = self.coords.accuracy;
+              }
+             });
+          };
+         return Location;
+        } ());*/
+
+
    
 /*To load the dependencies during annotations
 =====================================================================================*/
@@ -254,9 +306,12 @@ TODO: Function to create sidebar column */
 
                           "src/assets/css/styles.css",
                           "src/assets/css/bootstrap.min.css",
+                          "src/assets/css/share-annotator.min.css",
                           "src/assets/js/js_libraries/annotator-full.1.2.10/annotator.min.css",
                           "src/assets/js/js_libraries/anno.touch/annotator.touch.css",
-                          "src/assets/js/bundle/bundle.js"];
+                          "src/assets/js/bundle/bundle.js",
+                          "src/assets/js/suggest.js"
+                          ];
 
         App.dependency_Fun = function (dependency) {
                       var loaded = false;
@@ -266,7 +321,7 @@ TODO: Function to create sidebar column */
 
                           if(dependency[i].substr(dependency[i].length-3) === ".js"){
                                 var script = document.createElement("script"); /* Make a script DOM node*/
-                                //script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                                /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
                                 /* Set it"s src to the provided URL*/
                                 script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i];
                                 script.type = "text/javascript";
@@ -278,7 +333,7 @@ TODO: Function to create sidebar column */
                             
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
-                              //link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                              /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
                               link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
                               document.head.appendChild(link); 
                              }
