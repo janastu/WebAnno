@@ -661,6 +661,7 @@ Filter.prototype.options={appendTo:"body",filters:[],addAnnotationFilter:true,is
           content = this.options.highlightStyles;
 
       content = isStyle ? content : 'background-color: rgb(180, 213, 254)';
+      
 
       css = css.replace(/\$/g, content);
       style.appendChild(document.createTextNode(css));

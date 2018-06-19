@@ -8,6 +8,12 @@
       height: 100%;
     }
     
+    /*striking out the text*/
+    .strike-text {
+      text-decoration: line-through;
+    }
+
+
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
@@ -36,8 +42,13 @@
     } 
 
     .anno-sidebar-text{
-      background-color:#f2f2f2;
+      background-color:#f2f2f2; 
       height: 10rem;
       width:  22rem;
 
     }
+
+
+  .annotator-hl{
+    background:rgba(14,226,40,0.3);
+  }

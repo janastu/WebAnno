@@ -6,7 +6,7 @@
  /* ===========================================*/
   
   App.init = function() {
-    console.log("init", new Date);
+    //console.log("init", new Date);
     
     /*
     initialize application here
@@ -23,7 +23,7 @@
         App.$startAnnoBtn = document.getElementById("start-anno");
         App.$exportAnnoBtn = document.getElementById("export-anno");
         App.$clearStorageBtn = document.getElementById("clear-storage");
-    
+        App.$suggestBtn = document.getElementById("sugg");
    
 
     /* Bind events
@@ -64,21 +64,63 @@
         
         App.exportAnnos(newarr_check);
     },
-      
 
-    clearStorageBtn : function () {
+
+      suggestBtn:  function() {
+                
+          var sel, range, suggestedtext, texta;
+          if (window.getSelection) {
+              sel = window.getSelection(); 
+              suggestedtext = sel.toString();
+
+              texta = test(suggestedtext);
+
+              console.log("o/p from test",texta);
+              var textb = document.createRange().createContextualFragment(texta);
+              console.log("o/p from create range fragment",textb);
+              var textc = document.body.append(textb);
+              console.log("replaced text",textc);
+
+             console.log(sel);
+              if (sel.rangeCount) {
+                  range = sel.getRangeAt(0);
+                  //console.log(sel.getRangeAt(-1));
+                  range.deleteContents(); //removes the contents of the Range from the document.
+                  range.insertNode(document.createTextNode(textc));//The new node is inserted at the start boundary point of the Range.
+               }  
+            } 
+      },
+
+  
+    clearStorageBtn : function() {
+      var annotator = jQuery("body").data('annotator');
+      
         if (annotator) {
           annotator.plugins.Offline.store.clear();
         }
       }
   }
   
-/* ======================================================================*/
 
+
+  var test = function(suggested_text){
+                         
+                        return `<span class="strike-text">
+                                          ${ suggested_text + "<br>"}
+                                </span>`  
+                      }
+
+/* ======================================================================*/
+  /* App.suggestion = function(){
+    var input = document.createElement("input");
+    input.append("type = 'text' , name = 'sugg_box'")
+
+   }*/
    /*Implementation of Touch feature works for the TouchDevices
    [TODO]: DOM parameters  need to be dynamic ex:body */
    App.annoBootstrap = function(){
-    jQuery("body").annotator().annotator("addPlugin", "Touch", {
+
+    /*jQuery("body").annotator().annotator("addPlugin", "Touch", {
         force: location.search.indexOf("force") > -1,
         useHighlighter: location.search.indexOf("highlighter") > -1
       });
@@ -89,7 +131,7 @@
         } else {
           jQuery("body").append("<p><a href='./index.html?force'>Enable Plugin in Desktop Browser</a></p>");
         }
-      }
+      }*/
        
       /*Below section is for Implementing the storage*/
       jQuery("body").annotator().annotator("addPlugin","Offline", {
@@ -105,11 +147,20 @@
           tag: function(){
            jQuery("#status").tags("Tags"); 
          }
+
       });
-
-
+      
+      /*jQuery("body").annotator().annotator("addPlugin","suggestion", {
+          suggest: function(){
+           jQuery("#status").Suggestion("suggests"); 
+         }
+      });*/
+       //App.cyancolor(annotator-hl);
+     
     }
 
+
+ 
 
 /* ==========================================*/
 
@@ -144,12 +195,23 @@
   }
 
 
+//var temp1 = suggestBtn();
+var suggestTemplate=function(suggested_text){
+        
+        return `<p id="strike-text">
+                          ${ suggested_text.quote + "<br>"}
+                </p>`
+        
+      }
+
+
+
        /* sidebar*/
 
        /* template function to build html*/
           
-      /* var annoTemplate=function(selected_text){
-        return "<ul class="nav nav-pills nav-stacked">
+       var annoTemplate=function(selected_text){
+        return `<ul class="nav nav-pills nav-stacked">
                 <li class="list-of-annotations"> 
                   <div class="anno-sidebar-text">
                     <ul class="annotation-header">
@@ -160,9 +222,11 @@
                   </div>
                 </li>
               </ul>
-            <br>"
-      }*/
+            <br>`
+      }
        /* function to iterate over data and compile with html template*/
+
+
        
       App.getAnnos=function() {
        var archive = [],
@@ -180,20 +244,21 @@
        /*function to render in DOM */
       App.sideAnnoTpl=function(){
       
-        console.log(App.data);
+        //console.log(App.data);
 
         var nodes = [];
         for(var i=0;i < App.data.length;i++){
             nodes.push(document.createRange().createContextualFragment(annoTemplate(JSON.parse(App.data[i]))));
+            //console.log(App.data[i]);
           }
           return nodes;
         }
 
 
         App.buttonCreater= function(){
-          var button_id = ["start-anno","export-anno","clear-storage"];
-        var button_text = ["StartAnnotating","ExportAnnotation","Clear localStorage"];
-        var events = ["startAnnoBtn","exportAnnoBtn","clearStorageBtn"];
+          var button_id = ["start-anno","export-anno","clear-storage","sugg"];
+        var button_text = ["StartAnnotating","ExportAnnotation","Clear localStorage","suggest"];
+        var events = ["startAnnoBtn","exportAnnoBtn","clearStorageBtn","suggestBtn"];
           for(var k=0; k< button_id.length; k++){
 
             button_id[k]=document.createElement("button");
@@ -223,7 +288,7 @@
 
             App.dependency_Fun = function (dependency) {
               var loaded = false;
-              console.log("loading started", new Date);
+              //console.log("loading started", new Date);
               var head = [], body = [];
               for(var i=0; i<dependency.length; i++){
 
@@ -246,11 +311,12 @@
 
               }
               loaded = true;
-              console.log("dependency loaded", loaded, head, new Date);
+              //console.log("dependency loaded", loaded, head, new Date);
               App.init();
            }
         App.dependency_Fun(App.dependencies);
 
 /*App.init();*/
+
            
 })();

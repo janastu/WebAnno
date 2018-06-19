@@ -621,7 +621,7 @@
           isStyle = typeof this.options.highlightStyles === 'string',
           content = this.options.highlightStyles;
 
-      content = isStyle ? content : 'background-color: rgb(180, 213, 254)';
+      content = isStyle ? content : 'background-color: rgb(66, 244, 212)';
 
       css = css.replace(/\$/g, content);
       style.appendChild(document.createTextNode(css));
