@@ -1,0 +1,29 @@
+//define fun()
+var ss = function(){
+        var suggestdata = [];
+        //var ccc=  jQuery("p").annotator();
+        for(var i=0;i < App.data.length;i++){
+           suggestdata[i] = JSON.parse(App.data[i]);
+            }
+            return suggestdata ;
+        //console.log("this is :  ", );
+
+      }
+	  
+//call a fun and assign it to global variable
+temp1=ss();
+
+// function that creates span tag and to strike the quote value
+var test = function(suggested_text){
+        
+        return `<span id="strike-text">
+                          ${ suggested_text + "<br>"}
+                </span>`
+        
+      }
+	  
+//creates document fragment of span tag
+var tt = document.createRange().createContextualFragment(test(temp1[0].quote))
+
+//append it to document.body in order to display on web page
+document.body.append(tt)

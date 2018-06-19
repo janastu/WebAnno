@@ -8,13 +8,33 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script data-main="scripts/main" src="require.js"></script>
+  <!--script data-main="scripts/main" src="require.js"></script-->
+  <!--script src= "annotator-full.1.2.10/annotator-full.min.js"></script>
+  <script src= "annotator-full.1.2.10/annotator.min.css"></script-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="annotator-full.min.js"></script>
+  <link rel="stylesheet" href="annotator.min.css">
+  
   <script>
     function myFunction() {
         var x = document.getElementById("myText").value;
         document.getElementById("demo").innerHTML = x;
     }
 </script>
+
+<script>
+$(document).ready(function(){
+        //$("p").annotator(); // works
+        //.annotator('setupPlugins'); //error
+        //$("p").annotator('setupPlugins');// works comment
+        //$("p").annotator('addPlugin', 'Tags');//works tags
+        var check= $("p").annotator('setupPlugins');// works
+        check.annotator('addPlugin', 'Tags');
+    });
+
+</script>
+
+
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -27,7 +47,7 @@
         <span class="icon-bar"></span> 
       </button>
       <div class="caption">
-        <img id="logo" src="logo1.jpg"/>
+        <!--img id="logo" src="logo1.jpg"/-->
         <label>WEB ANNO</label>
       </div>
       <!--a class="navbar-brand" href="#"><img id="logo" src="logo1.jpg"/>Web Anno</a-->
@@ -79,7 +99,7 @@
     This Note describes and illustrates potential approaches for including annotations within HTML documents. Examples also are included illustrating the use within an HTML document of annotation Selectors as fragment identifiers. (The Working Group's Selectors and States Reference Note [selectors-states] defines the syntax used for Selectors as fragment identifiers.)
 
     The approaches described in this document are incomplete and preliminary. They do not exhaust the full range of feasible options. The approaches discussed in this note have emerged from Working Group discussions and should be considered no more than initial starting points for further discussion, experimentation and development.</p>
-    <center> <img src="flower.jpg" alt="Flower-for-the-day" height="300" width="400"> </center></br>
+    <!--center> <img src="flower.jpg" alt="Flower-for-the-day" height="300" width="400"> </center--></br>
     <p class='example1'> The Web Annotation Working Group has published three Recommendations for expressing annotations on the Web: the Web Annotation Data Model [annotation-model]; the Web Annotation Vocabulary [annotation-vocab]; and the Web Annotation Protocol [annotation-protocol]. These Recommendations define a serialization of the Model in a new, Web annotation-specific profile of JSON-LD [json-ld].
 
     This Note describes and illustrates potential approaches for including annotations within HTML documents. Examples also are included illustrating the use within an HTML document of annotation Selectors as fragment identifiers. (The Working Group's Selectors and States Reference Note [selectors-states] defines the syntax used for Selectors as fragment identifiers.)
@@ -161,7 +181,8 @@ function GetSelectedText () {
           
             var html = '<span id="span_id" style="background-color:yellow;">' + range + '</span>'
             range.deleteContents();
-            
+
+            //console.log(html);
             var el = document.createElement("div");
             el.innerHTML = html;
             //console.log(el.innerHTML);
@@ -200,7 +221,16 @@ function GetSelectedText () {
 });
 
 }
-  </script>
+</script>
+
+
+<!--script>
+  jQuery(function ($) {
+  $("p").annotator();
+  });
+</script-->
+
+
 <div class="navbar navbar-inverse">
     <p class="footer">Copyright &copy; 2018 Servelots InfoTech Private Ltd, Bengaluru  <p>    
 </div>

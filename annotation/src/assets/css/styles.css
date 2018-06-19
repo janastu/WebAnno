@@ -8,11 +8,11 @@
       height: 100%;
     }
     
-    /*striking out the text*/
+    /*striking out the text
     .strike-text {
       text-decoration: line-through;
     }
-
+    */
 
     /* Set black background color, white text and some padding */
     footer {
@@ -41,14 +41,41 @@
       top: 0px;
     } 
 
+
     .anno-sidebar-text{
-      background-color:#f2f2f2; 
-      height: 10rem;
-      width:  22rem;
+      background-color:#f2f2f2;
+      height: auto;
+      width:  28rem;
+      overflow:auto;
+      text-align: justify;
+
 
     }
 
+    #sidebar-container{
+      height: auto;
+      width: 300px;
+      position: absolute;
+      right: 20px;
+      background-color: #b9b9da;
+      padding: 9px;
+      margin: auto;
+      text-align: center;
+      overflow:auto;
+      font-size: 16px;
 
-  .annotator-hl{
-    background:rgba(14,226,40,0.3);
-  }
+    }
+
+    #anno-list{
+    margin-left: 106rem;
+    }
+
+    .annotation-text {
+    padding: 20px;
+
+    }
+
+    #annobtn {
+      padding : 0px;
+      margin : 0.5%;
+    }

@@ -6,48 +6,52 @@
  /* ===========================================*/
   
   App.init = function() {
-    //console.log("init", new Date);
-    
-    /*
+
+    console.log("init", new Date);
+        /*
     initialize application here
     document.getElementById = window.jQuery || {};
-     Declare all DOM elements
+    Declare all DOM elements
     */
+    App.ctx = document.body;
     App.buttonCreater();
 
     /* prepare Data */
     App.data = App.getAnnos();
 
-
-    /*App.$aside = document.getElementById("annotations");*/
-        App.$startAnnoBtn = document.getElementById("start-anno");
+    App.$aside = document.getElementById("sidebar-container");
+        /*App.$startAnnoBtn = document.getElementById("start-anno");
         App.$exportAnnoBtn = document.getElementById("export-anno");
-        App.$clearStorageBtn = document.getElementById("clear-storage");
-        App.$suggestBtn = document.getElementById("sugg");
-   
+
 
     /* Bind events
     App.bindEvents();*/
+   
+   App.ImageAnnotation();
 
     /*Call Render*/
+    
     App.render();
   }
 /*=======================================*/
 
 
   App.render = function() {
-
     /*Render app here*/
+    /*cleaning the sidebar column in order to not relpicate old annotations*/
+    App.$aside.innerHTML = "Look for Annotation";  
+    /*App.SidebarTemplate();*/
     var nodes = App.sideAnnoTpl();
-    /*for(var i = 0; i < nodes.length; i++){
+    for(var i = 0; i < nodes.length; i++){
             App.$aside.append(nodes[i]);
-          }*/
+          }
   }
 
 /* ===================================================*/
   App.bindEvents =  {
     startAnnoBtn: function(){
         /*alert("start button pressed");*/
+
         App.annoBootstrap(); 
         this.remove(); /*remove start-anno button*/
         dialog("you may start making notes"); 
@@ -65,90 +69,85 @@
         App.exportAnnos(newarr_check);
     },
 
+    clearStorageBtn : function () {
+        var annotator = jQuery(App.ctx).data('annotator');
 
-      suggestBtn:  function() {
-                
-          var sel, range, suggestedtext, texta;
-          if (window.getSelection) {
-              sel = window.getSelection(); 
-              suggestedtext = sel.toString();
-
-              texta = test(suggestedtext);
-
-              console.log("o/p from test",texta);
-              var textb = document.createRange().createContextualFragment(texta);
-              console.log("o/p from create range fragment",textb);
-              var textc = document.body.append(textb);
-              console.log("replaced text",textc);
-
-             console.log(sel);
-              if (sel.rangeCount) {
-                  range = sel.getRangeAt(0);
-                  //console.log(sel.getRangeAt(-1));
-                  range.deleteContents(); //removes the contents of the Range from the document.
-                  range.insertNode(document.createTextNode(textc));//The new node is inserted at the start boundary point of the Range.
-               }  
-            } 
-      },
-
-  
-    clearStorageBtn : function() {
-      var annotator = jQuery("body").data('annotator');
-      
         if (annotator) {
           annotator.plugins.Offline.store.clear();
         }
-      }
+      },
+
+      refreshPage : function () {
+          document.location.reload();
+    }
+
   }
   
 
-
-  var test = function(suggested_text){
-                         
-                        return `<span class="strike-text">
-                                          ${ suggested_text + "<br>"}
-                                </span>`  
-                      }
-
 /* ======================================================================*/
-  /* App.suggestion = function(){
-    var input = document.createElement("input");
-    input.append("type = 'text' , name = 'sugg_box'")
 
-   }*/
    /*Implementation of Touch feature works for the TouchDevices
    [TODO]: DOM parameters  need to be dynamic ex:body */
    App.annoBootstrap = function(){
-
-    /*jQuery("body").annotator().annotator("addPlugin", "Touch", {
+    $(App.ctx).annotator().annotator("addPlugin", "Touch", {
         force: location.search.indexOf("force") > -1,
         useHighlighter: location.search.indexOf("highlighter") > -1
       });
       
       if (!Annotator.Plugin.Touch.isTouchDevice()) {
         if (location.search.indexOf("force") > -1) {
-          jQuery("body").append("<p><a href='./index.html'>Disable Plugin in Desktop Browser</a></p>");
+          $(App.ctx).append("<p><a href='./index.html'>Disable Plugin in Desktop Browser</a></p>");
         } else {
-          jQuery("body").append("<p><a href='./index.html?force'>Enable Plugin in Desktop Browser</a></p>");
+          $(App.ctx).append("<p><a href='./index.html?force'>Enable Plugin in Desktop Browser</a></p>");
         }
-      }*/
+      }
        
       /*Below section is for Implementing the storage*/
-      jQuery("body").annotator().annotator("addPlugin","Offline", {
+      $(App.ctx).annotator().annotator("addPlugin","Offline", {
         /* online:  function () {
-         jQuery("#status").text("Online");
-         },*/
+         jQuery("#status").text("Online"); },*/
          offline: function () {
          jQuery("#status").text("Offline");
+         /*console.log("load offline plugin", this);*/
 
-         }  });
+          /*setAnnotationData: function (ann) {
+            // Add page specific data to the annotation on creation.
+            if (!ann.page) {
+              ann.page = getCurrentPage(); // getCurrentPage() would return the current page number
+            }
+          },
+          shouldLoadAnnotation: function (ann) {
+            // Return true if the annotation should be loaded into the current view.
+            return ann.page === getCurrentPage();
+          }*/
 
-      jQuery("body").annotator().annotator("addPlugin","Tags", {
+         
+        }
+
+       });
+
+      $(App.ctx).annotator().annotator("addPlugin","Tags", {
           tag: function(){
            jQuery("#status").tags("Tags"); 
          }
 
       });
+
+      $(App.ctx).annotator().annotator("addPlugin","SuggestEdit", "This is Annotation");
+
+      
+
+
+      /*$(App.ctx).annotator().annotator('addPlugin','Share');*/
+
+    
+     $(App.ctx).on('annotationCreated', function(anno) { 
+              App.data = App.getAnnos(); //
+              App.render();
+              //console.log(anno);
+            });
+
+      }
       
       /*jQuery("body").annotator().annotator("addPlugin","suggestion", {
           suggest: function(){
@@ -195,28 +194,19 @@
   }
 
 
-//var temp1 = suggestBtn();
-var suggestTemplate=function(suggested_text){
-        
-        return `<p id="strike-text">
-                          ${ suggested_text.quote + "<br>"}
-                </p>`
-        
-      }
-
-
 
        /* sidebar*/
 
-       /* template function to build html*/
+    /*Function to generate HTML template for individual annotations*/
           
-       var annoTemplate=function(selected_text){
+
+     var annoTemplate=function(selected_text){
         return `<ul class="nav nav-pills nav-stacked">
                 <li class="list-of-annotations"> 
                   <div class="anno-sidebar-text">
-                    <ul class="annotation-header">
+                    <ul class="annotation-header list-group">
                       <li class="annotation-text">
-                          ${"Body: " + selected_text.text + "<br>" + "Target: " + selected_text.quote + "<br>" + "Tags: " + selected_text.tags}
+                          ${"<strong>"+ "Body: "+"</strong>" + selected_text.text + "<br>" +"<strong>"+ "Target: "+"</strong>" + selected_text.quote + "<br>" +"<strong>"+ "Tags: "+"</strong>" + selected_text.tags}
                       </li>
                     </ul>
                   </div>
@@ -224,99 +214,160 @@ var suggestTemplate=function(suggested_text){
               </ul>
             <br>`
       }
-       /* function to iterate over data and compile with html template*/
 
+
+/* ==================================================================================
+Below function is used to iterate over annotated data and compile with html template*/
 
        
       App.getAnnos=function() {
-       var archive = [],
-          keys = Object.keys(localStorage),
-          i = 0, key;
+               var archive = [],
+                  keys = Object.keys(localStorage),
+                  i = 0, key;
 
-      for (; key = keys[i]; i++) {
-          archive.push( localStorage.getItem(key));
+              for (; key = keys[i]; i++) {
+                  archive.push( localStorage.getItem(key));
+              }
+
+              return archive;
       }
 
-      return archive;
-      }
-   
-
-       /*function to render in DOM */
+/* ==================================================================================
+Below function is used to createTemplate for adding annotations to the sidebar Column  */
+/*function to render in DOM */
       App.sideAnnoTpl=function(){
       
+
         //console.log(App.data);
 
-        var nodes = [];
-        for(var i=0;i < App.data.length;i++){
-            nodes.push(document.createRange().createContextualFragment(annoTemplate(JSON.parse(App.data[i]))));
-            //console.log(App.data[i]);
-          }
-          return nodes;
+        
+              //console.log(App.data);
+
+              var nodes = [];
+              for(var i=0;i < App.data.length;i++){
+                  nodes.push(document.createRange().createContextualFragment(annoTemplate(JSON.parse(App.data[i]))));
+                }
+
+                return nodes;
+
         }
 
+/*=======================================================================*/
+/*To create dynamic buttons after calling the BOOKMAEKLET */
 
         App.buttonCreater= function(){
-          var button_id = ["start-anno","export-anno","clear-storage","sugg"];
-        var button_text = ["StartAnnotating","ExportAnnotation","Clear localStorage","suggest"];
-        var events = ["startAnnoBtn","exportAnnoBtn","clearStorageBtn","suggestBtn"];
-          for(var k=0; k< button_id.length; k++){
-
-            button_id[k]=document.createElement("button");
-            button_id[k].innerText=button_text[k];
-            button_id[k].addEventListener("click", App.bindEvents[events[k]]);
-            document.body.prepend(button_id[k]);
 
 
-          }
+                  var button_id = ["start-anno","export-anno","clear-storage","exit-annotation"];
+                  var button_text = ["StartAnnotating","ExportAnnotation","Clear localStorage","exit-annotation"];
+                  var events = ["startAnnoBtn","exportAnnoBtn","clearStorageBtn","refreshPage"];
+                  var Annotations_list = document.createElement("h1");
+                  Annotations_list.innerText = "Annotation List";
+                  Annotations_list.id = "anno-list";
+                 document.body.prepend(Annotations_list);
 
-
+                  for(var k=0; k< button_id.length; k++){
+                    button_id[k]=document.createElement("button");
+                    button_id[k].id = "annobtn";
+                    /*button_id[k].className = "btn btn-primary ";*/
+                    button_id[k].innerText=button_text[k];
+                    button_id[k].addEventListener("click", App.bindEvents[events[k]]);
+                    document.body.prepend(button_id[k]);
+                  }
         }
 
-      
+/*======================================================================*/
+/*Function to create sidebar column */
+   
+             App.SidebarTemplate= function(){
+                        var annoFrame= document.createElement("div");
+                        //annoFrame.innerText= "Annotations List";
+                        annoFrame.id = "sidebar-container";
+                        document.body.prepend(annoFrame);
+                        }
 
+
+/*=====================================================================================
+Function to make web images annottable*/
+      imgarr = [];
+      App.ImageAnnotation = function(){
+        imgarr = document.getElementsByTagName("img");
+         for (var i=0; i <= imgarr.length ; i++){
+           anno.makeAnnotatable(imgarr[i]);
+         }
+      }
+
+/*===============================================================================*/
+/* Function to use location   */
+        /*Annotator.Plugin.Location= (function () { 
+          function Location() {}
+
+          Location.prototype.pluginInit = funtcion () {
+            var self = this;
+             navigator.geolocation.getCurrentPosition(function (pos) {
+             self.coords = pos.coords;
+             });
+
+             self.annotator.on('beforeAnnotationCreated', function (ann) {
+              if (self.coords != null) {
+              ann.coords = {};
+              ann.coords.latitude = self.coords.latitude;
+              ann.coords.longitude = self.coords.longitude;
+              ann.coords.accuracy = self.coords.accuracy;
+              }
+             });
+          };
+         return Location;
+        } ());*/
+
+
+   
+/*To load the dependencies during annotations
+=====================================================================================*/
           App.dependencies= [
 
                           "src/assets/css/styles.css",
                           "src/assets/css/bootstrap.min.css",
+                          "src/assets/css/share-annotator.min.css",
                           "src/assets/js/js_libraries/annotator-full.1.2.10/annotator.min.css",
                           "src/assets/js/js_libraries/anno.touch/annotator.touch.css",
-                          "src/assets/js/bundle/bundle.js"];
+                          "src/assets/js/bundle/bundle.js",
+                          "src/assets/js/suggest.js"
+                          ];
 
+        App.dependency_Fun = function (dependency) {
+                      var loaded = false;
+                      console.log("loading started", new Date);
+                      var head = [], body = [];
+                      for(var i=0; i<dependency.length; i++){
 
+                          if(dependency[i].substr(dependency[i].length-3) === ".js"){
+                                var script = document.createElement("script"); /* Make a script DOM node*/
+                                /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
+                                /* Set it"s src to the provided URL*/
+                                script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i];
+                                script.type = "text/javascript";
+                                document.head.appendChild(script); 
+                                /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
+                            }
+                          
+                          else{
+                            
+                              var link = document.createElement("link"); 
+                              link.rel = "stylesheet";
+                              /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
+                              link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
+                              document.head.appendChild(link); 
+                             }
+                      }
 
-         /*=====================================================================================*/
+                      loaded = true;
+                      console.log("dependency loaded", loaded, head, new Date);
+                      
+                      App.SidebarTemplate();
+                      App.init();
 
-            App.dependency_Fun = function (dependency) {
-              var loaded = false;
-              //console.log("loading started", new Date);
-              var head = [], body = [];
-              for(var i=0; i<dependency.length; i++){
-
-                  if(dependency[i].substr(dependency[i].length-3) === ".js"){
-                      var script = document.createElement("script"); /* Make a script DOM node*/
-                        script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; /* Set it"s src to the provided URL*/
-                        script.type = "text/javascript";
-                        document.head.appendChild(script); /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
-              
-                      /*head.push(script);*/
-                    }
-                  
-                  else{
-                    
-                      var link = document.createElement("link"); 
-                      link.rel = "stylesheet";
-                      link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
-                      document.head.appendChild(link); 
-                }
-
-              }
-              loaded = true;
-              //console.log("dependency loaded", loaded, head, new Date);
-              App.init();
            }
         App.dependency_Fun(App.dependencies);
-
-/*App.init();*/
-
-           
+        
 })();
