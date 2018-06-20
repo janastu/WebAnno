@@ -310,7 +310,7 @@ Function to make web images annottable*/
                           "src/assets/js/suggest.js"
                           ];
 
-        App.dependency_Fun = function (dependency) {
+          App.dependency_Fun = function (dependency) {
                       var loaded = false;
                       console.log("loading started", new Date);
                       var head = [], body = [];
@@ -320,7 +320,7 @@ Function to make web images annottable*/
                                 var script = document.createElement("script"); /* Make a script DOM node*/
                                 /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
                                 /* Set it"s src to the provided URL*/
-                                script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i];
+                                script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
                                 script.type = "text/javascript";
                                 document.head.appendChild(script); 
                                 /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
@@ -331,7 +331,7 @@ Function to make web images annottable*/
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
                               /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
-                              link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
+                              link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
                               document.head.appendChild(link); 
                              }
                       }
