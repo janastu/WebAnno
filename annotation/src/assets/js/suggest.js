@@ -46,7 +46,6 @@ window.onload = (function(Annotator){
 		        		temp.describe = false;
 		      			console.log("notcheck",temp.suggest,temp.describe);
 		        	}
-		     
 		     //console.log("suggested text",suggtext);
 		     /*var temp = annotation;
         	
@@ -59,9 +58,8 @@ window.onload = (function(Annotator){
 		        		temp.suggest = true;
 		        		
 		        	}*/
-
-        }
-      });
+        }//submit
+      });//addfield
 
 
       this.annotator
@@ -74,10 +72,18 @@ window.onload = (function(Annotator){
           })*/
 
         
-  };
+  };//pluginInit
+
+//==============================================================
+Highlighter.prototype.suggest = function () {
+ // this.Highlighter();
+  console.log("Check the highlights on the doc", this);
+} 
+
+
 
 
     // Create your plugin here. Then return it.
     return myPlugin;
-}
-})
+}//SuggestEdit
+})//closure

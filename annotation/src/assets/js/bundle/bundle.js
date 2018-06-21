@@ -669,7 +669,8 @@ var _ref,__bind=function(a,b){return function(){return a.apply(b,arguments)}},__
           isStyle = typeof this.options.highlightStyles === 'string',
           content = this.options.highlightStyles;
 
-      content = isStyle ? content : 'background-color: rgb(180, 213, 254)';
+      //content = isStyle ? content : 'background-color: rgb(180, 213, 254)';
+      content = isStyle ? content : 'text-decoration: line-through;';
       
 
       css = css.replace(/\$/g, content);
