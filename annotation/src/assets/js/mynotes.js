@@ -3,6 +3,7 @@
 
   window.App = window.App || {};
 
+<<<<<<< HEAD
  /* ===========================================*/
   
   App.init = function() {
@@ -28,9 +29,30 @@
     App.bindEvents();*/
    
   // App.ImageAnnotation();
+=======
+ /* ===================================================================*/
+  /*INITIALIZE the Application and also Declare all DOM elements*/
+  App.init = function() {                 /*console.log("init", new Date);*/
 
-    /*Call Render*/
+                                          /*document.getElementById = window.jQuery || {};*/
     
+    App.ctx = document.body;              /*App.context= App.ctx*/
+    
+    App.buttonCreater();                  /*Creating the buttons dynamically*/ 
+    
+    App.data = App.getAnnos();            /* Prepare Data and Fetch the previous Data if any! */
+
+    App.$aside = document.getElementById("sidebar-container");
+                                          /*App.$startAnnoBtn = document.getElementById("start-anno");
+                                          App.$exportAnnoBtn = document.getElementById("export-anno");
+                                          App.$clearStorageBtn = document.getElementById("clear-storage");*/
+
+                                          /* Bind events :::::  App.bindEvents();*/
+    App.ImageAnnotation();                /* This allows to annotate the image on the web page */
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
+
+                                          /*Calling Render to fetech Annotations and display them on the sidebar*/
+     
     App.render();
   }
 /*=======================================*/
@@ -50,17 +72,17 @@
 /* ===================================================*/
   App.bindEvents =  {
     startAnnoBtn: function(){
-        /*alert("start button pressed");*/
+                                                    /*alert("start button pressed");*/
 
         App.annoBootstrap(); 
-        this.remove(); /*remove start-anno button*/
+        this.remove();                               /*remove start-anno button*/
         dialog("you may start making notes"); 
       },
 
 
     exportAnnoBtn: function(){
         var newarr_check=[];
-        /*alert("export button pressed");*/
+                                                    /*alert("export button pressed");*/
         for ( var i = 0, len = localStorage.length; i < len; ++i ) {
          var check= JSON.parse(localStorage.getItem( localStorage.key( i )));
          newarr_check.push(check);
@@ -88,6 +110,7 @@
 
    /*Implementation of Touch feature works for the TouchDevices
    [TODO]: DOM parameters  need to be dynamic ex:body */
+
    App.annoBootstrap = function(){
     $(App.ctx).annotator().annotator("addPlugin", "Touch", {
         force: location.search.indexOf("force") > -1,
@@ -109,7 +132,6 @@
          offline: function () {
          jQuery("#status").text("Offline");
          /*console.log("load offline plugin", this);*/
-
           /*setAnnotationData: function (ann) {
             // Add page specific data to the annotation on creation.
             if (!ann.page) {
@@ -120,8 +142,6 @@
             // Return true if the annotation should be loaded into the current view.
             return ann.page === getCurrentPage();
           }*/
-
-         
         }
 
        });
@@ -136,9 +156,7 @@
       $(App.ctx).annotator().annotator("addPlugin","SuggestEdit", "This is Annotation");
 
       
-
-
-      /*$(App.ctx).annotator().annotator('addPlugin','Share');*/
+    /*$(App.ctx).annotator().annotator('addPlugin','Share');*/
 
     
      $(App.ctx).on('annotationCreated', function(anno) { 
@@ -178,8 +196,9 @@
     }, 3000);
 
   }
-
+/*===========================================================================*/
    /* Function to export the json file*/
+
   App.exportAnnos= function (jsonData) {
 
       var dataStr = JSON.stringify(jsonData);
@@ -194,9 +213,14 @@
   }
 
 
+<<<<<<< HEAD
 
        /* sidebar*/
 
+=======
+      
+/*===================================================================================*/
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
     /*Function to generate HTML template for individual annotations*/
           
 
@@ -215,8 +239,12 @@
             <br>`
       }
 
+<<<<<<< HEAD
 
 /* ==================================================================================
+=======
+/* ===========================================================================================
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
 Below function is used to iterate over annotated data and compile with html template*/
 
        
@@ -232,7 +260,7 @@ Below function is used to iterate over annotated data and compile with html temp
               return archive;
       }
 
-/* ==================================================================================
+/* =================================================================================================
 Below function is used to createTemplate for adding annotations to the sidebar Column  */
 /*function to render in DOM */
       App.sideAnnoTpl=function(){
@@ -252,7 +280,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
         }
 
-/*=======================================================================*/
+/*===================================================================================================*/
 /*To create dynamic buttons after calling the BOOKMAEKLET */
 
         App.buttonCreater= function(){
@@ -276,7 +304,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                   }
         }
 
-/*======================================================================*/
+/*==================================================================================================*/
 /*Function to create sidebar column */
    
              App.SidebarTemplate= function(){
@@ -287,6 +315,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                         }
 
 
+<<<<<<< HEAD
 /*=====================================================================================*/
 /*Function to make web images annottable
       imgarr = [];
@@ -296,6 +325,17 @@ Below function is used to createTemplate for adding annotations to the sidebar C
            anno.makeAnnotatable(imgarr[i]);
          }
       }*/
+=======
+/*=====================================================================================================
+Function to make web images annottable*/
+              imgarr = [];
+              App.ImageAnnotation = function(){
+                imgarr = document.getElementsByTagName("img");
+                 for (var i=0; i <= imgarr.length ; i++){
+                   anno.makeAnnotatable(imgarr[i]);
+                 }
+              }
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
 
 /*===============================================================================*/
 /* Function to use location   */
@@ -335,9 +375,9 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                           "src/assets/js/suggest.js"
                           ];
 
-        App.dependency_Fun = function (dependency) {
+          App.dependency_Fun = function (dependency) {
                       var loaded = false;
-                      console.log("loading started", new Date);
+                      //console.log("loading started", new Date);
                       var head = [], body = [];
                       for(var i=0; i<dependency.length; i++){
 
@@ -345,8 +385,12 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                                 var script = document.createElement("script"); /* Make a script DOM node*/
                                 /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
                                 /* Set it"s src to the provided URL*/
+<<<<<<< HEAD
                                 //script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i];
                                 script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
+=======
+                                script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
                                 script.type = "text/javascript";
                                 document.head.appendChild(script); 
                                 /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
@@ -357,8 +401,12 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
                               /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
+<<<<<<< HEAD
                               //link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
                               link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
+=======
+                              link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
                               document.head.appendChild(link); 
                              }
                       }
@@ -370,6 +418,9 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                       App.init();
 
            }
+
+       /*=========================================================================
+       First call to a function::: Calling the function App.dependency_Func() here */    
         App.dependency_Fun(App.dependencies);
         
-})();
+})(); //end of the closure 

@@ -1,3 +1,5 @@
+
+
 /*jshint immed:false*/ /*globals Range*/
 (function (module, window, document) {
   /* Helper function to provide support for Function.prototype.bind() in
@@ -621,7 +623,13 @@
           isStyle = typeof this.options.highlightStyles === 'string',
           content = this.options.highlightStyles;
 
+<<<<<<< HEAD
       content = isStyle ? content : 'background-color: rgb(66, 244, 212)';
+=======
+      //content = isStyle ? content : 'background-color: rgb(180, 213, 254)';
+      content = isStyle ? content : 'text-decoration: line-through';
+
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
 
       css = css.replace(/\$/g, content);
       style.appendChild(document.createTextNode(css));
