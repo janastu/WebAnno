@@ -18,6 +18,8 @@
     };
   }
 
+
+
   /* Checks to see if the element has the class.
    *
    * el        - A DOM element.
@@ -113,6 +115,7 @@
    *
    * Returns a new instance of Highlighter.
    */
+   /*========================================================================================*/
   function Highlighter(options) {
     // Bind all event handlers to the current scope.
     for (var method in this) {
@@ -135,6 +138,8 @@
       this.enable();
     }
   }
+/*==============================================================================================*/
+
 
   Highlighter.prototype = {
     /* Redefine the constructor property. */
@@ -760,11 +765,14 @@
         touchend:  '_onHandleUp'
       });
     }
-  };
+  } ;
+
 
   if (module.exports) {
     module.exports = Highlighter;
   } else {
     module.Highlighter = Highlighter;
   }
-})(typeof module !== 'undefined' ? module : this, this, this.document);
+
+
+}) (typeof module !== 'undefined' ? module : this, this, this.document);

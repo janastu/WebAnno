@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="src/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="src/assets/css/annotorious.css" />
+    <script type="text/javascript" src="src/assets/js/annotorious.okfn.0.3.js"></script>
+    <!--link rel="stylesheet" type="text/css" href="http://emory-lits-labs.github.io/annotator-imgselect/src/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css" />
+    <script type="text/javascript" src="http://emory-lits-labs.github.io/annotator-imgselect/build/0.2.3/annotator.imgselect.min.js"></script-->
+</head>
+
+<body>
+
+  <div class="container">
+  <h2> My Notes </h2>
+  <h4>Happy Annotating </h4>
+  <p> Annotate the image using Annotorious library. To annotate an image, hover over the image and select some part on the image and start annotating</p>
+  
+  <img src="src/assets/images/test-image.jpg">
+  <h3>  </h3>
+  <p> Powered by Annotorious library </p>
+    
+
+<script type="text/javascript" src="src/assets/js/js_libraries/jquery.js"> </script>
+<script>
+  $(document.body).annotator().annotator('addPlugin', 'AnnotoriousImagePlugin');
+</script>
+<!--script>
+  var app = new annotator.App();
+    app.include(annotatorImageSelect, {
+        element: $('.content img'),
+    });
+</script-->
+
+</body>
+
+</html>
