@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="src/assets/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+  <h2> My Notes </h2>
+  <h4> Note taking with annotations </h4>
+  <p>TO ANNOTATE DRAG AND DROP THE BELOW LINK TO YOUR BOOKMARKS toolbar</p>
+  <p> Click on the added bookmarklet to start Annotating! </p>
+
+  <h3> Happy Annotating </h3>
+
+  <p> P.S. Only works with http sites </p>
+  <p> Powered by Annotator Js </p>
+
+  <a type="button" class="btn-lg btn-primary" href="javascript:!function()%7Bwindow.App%3Dwindow.App%7C%7C%7B%7D%2CApp.init%3Dfunction()%7Bconsole.log(%22init%22%2Cnew%20Date)%2CApp.buttonCreater()%2CApp.data%3DApp.getAnnos()%2CApp.%24startAnnoBtn%3Ddocument.getElementById(%22start-anno%22)%2CApp.%24exportAnnoBtn%3Ddocument.getElementById(%22export-anno%22)%2CApp.%24clearStorageBtn%3Ddocument.getElementById(%22clear-storage%22)%2CApp.render()%7D%2CApp.render%3Dfunction()%7BApp.sideAnnoTpl()%7D%2CApp.bindEvents%3D%7BstartAnnoBtn%3Afunction()%7Bvar%20e%2Cn%2Ct%3BApp.annoBootstrap()%2Cthis.remove()%2Ce%3D%22you%20may%20start%20making%20notes%22%2Cn%3Ddocument.createElement(%22DIALOG%22)%2Ct%3Ddocument.createTextNode(e)%2Cn.setAttribute(%22open%22%2C%22open%22)%2Cn.appendChild(t)%2Cdocument.body.appendChild(n)%2CsetTimeout(function()%7Bn.removeAttribute(%22open%22%2C%22open%22)%7D%2C3e3)%7D%2CexportAnnoBtn%3Afunction()%7Bfor(var%20e%3D%5B%5D%2Cn%3D0%2Ct%3DlocalStorage.length%3Bn%3Ct%3B%2B%2Bn)%7Bvar%20o%3DJSON.parse(localStorage.getItem(localStorage.key(n)))%3Be.push(o)%7DApp.exportAnnos(e)%7D%2CclearStorageBtn%3Afunction()%7Bannotator%26%26annotator.plugins.Offline.store.clear()%7D%7D%2CApp.annoBootstrap%3Dfunction()%7BjQuery(%22body%22).annotator().annotator(%22addPlugin%22%2C%22Touch%22%2C%7Bforce%3Alocation.search.indexOf(%22force%22)%3E-1%2CuseHighlighter%3Alocation.search.indexOf(%22highlighter%22)%3E-1%7D)%2CAnnotator.Plugin.Touch.isTouchDevice()%7C%7C(location.search.indexOf(%22force%22)%3E-1%3FjQuery(%22body%22).append(%22%3Cp%3E%3Ca%20href%3D'.%2Findex.html'%3EDisable%20Plugin%20in%20Desktop%20Browser%3C%2Fa%3E%3C%2Fp%3E%22)%3AjQuery(%22body%22).append(%22%3Cp%3E%3Ca%20href%3D'.%2Findex.html%3Fforce'%3EEnable%20Plugin%20in%20Desktop%20Browser%3C%2Fa%3E%3C%2Fp%3E%22))%2CjQuery(%22body%22).annotator().annotator(%22addPlugin%22%2C%22Offline%22%2C%7Boffline%3Afunction()%7BjQuery(%22%23status%22).text(%22Offline%22)%7D%7D)%2CjQuery(%22body%22).annotator().annotator(%22addPlugin%22%2C%22Tags%22%2C%7Btag%3Afunction()%7BjQuery(%22%23status%22).tags(%22Tags%22)%7D%7D)%7D%2CApp.exportAnnos%3Dfunction(e)%7Bvar%20n%3DJSON.stringify(e)%2Ct%3D%22data%3Aapplication%2Fjson%3Bcharset%3Dutf-8%2C%22%2BencodeURIComponent(n)%2Co%3Ddocument.createElement(%22a%22)%3Bo.setAttribute(%22href%22%2Ct)%2Co.setAttribute(%22download%22%2C%22data.json%22)%2Co.click()%7D%2CApp.getAnnos%3Dfunction()%7Bfor(var%20e%2Cn%3D%5B%5D%2Ct%3DObject.keys(localStorage)%2Co%3D0%3Be%3Dt%5Bo%5D%3Bo%2B%2B)n.push(localStorage.getItem(e))%3Breturn%20n%7D%2CApp.sideAnnoTpl%3Dfunction()%7Bconsole.log(App.data)%3Bfor(var%20e%3D%5B%5D%2Cn%3D0%3Bn%3CApp.data.length%3Bn%2B%2B)e.push(document.createRange().createContextualFragment(annoTemplate(JSON.parse(App.data%5Bn%5D))))%3Breturn%20e%7D%2CApp.buttonCreater%3Dfunction()%7Bfor(var%20e%3D%5B%22start-anno%22%2C%22export-anno%22%2C%22clear-storage%22%5D%2Cn%3D%5B%22StartAnnotating%22%2C%22ExportAnnotation%22%2C%22Clear%20localStorage%22%5D%2Ct%3D%5B%22startAnnoBtn%22%2C%22exportAnnoBtn%22%2C%22clearStorageBtn%22%5D%2Co%3D0%3Bo%3Ce.length%3Bo%2B%2B)e%5Bo%5D%3Ddocument.createElement(%22button%22)%2Ce%5Bo%5D.innerText%3Dn%5Bo%5D%2Ce%5Bo%5D.addEventListener(%22click%22%2CApp.bindEvents%5Bt%5Bo%5D%5D)%2Cdocument.body.prepend(e%5Bo%5D)%7D%2CApp.dependencies%3D%5B%22src%2Fassets%2Fcss%2Fstyles.css%22%2C%22src%2Fassets%2Fcss%2Fbootstrap.min.css%22%2C%22src%2Fassets%2Fjs%2Fjs_libraries%2Fannotator-full.1.2.10%2Fannotator.min.css%22%2C%22src%2Fassets%2Fjs%2Fjs_libraries%2Fanno.touch%2Fannotator.touch.css%22%2C%22src%2Fassets%2Fjs%2Fbundle%2Fbundle.js%22%5D%2CApp.dependency_Fun%3Dfunction(e)%7Bconsole.log(%22loading%20started%22%2Cnew%20Date)%3Bfor(var%20n%3D0%3Bn%3Ce.length%3Bn%2B%2B)if(%22.js%22%3D%3D%3De%5Bn%5D.substr(e%5Bn%5D.length-3))%7Bvar%20t%3Ddocument.createElement(%22script%22)%3Bt.src%3D%22%2F%2Flocalhost%3A8080%2FWebAnno%2Fannotation%2F%22%2Be%5Bn%5D%2Ct.type%3D%22text%2Fjavascript%22%2Cdocument.head.appendChild(t)%7Delse%7Bvar%20o%3Ddocument.createElement(%22link%22)%3Bo.rel%3D%22stylesheet%22%2Co.href%3D%22%2F%2Flocalhost%3A8080%2FWebAnno%2Fannotation%2F%22%2Be%5Bn%5D%2Cdocument.head.appendChild(o)%7Dconsole.log(%22dependency%20loaded%22%2C!0%2C%5B%5D%2Cnew%20Date)%2CApp.init()%7D%2CApp.dependency_Fun(App.dependencies)%7D()%3B">BOOKMARKLET</a>
+
+  
+
+</body>
+
+</html>

@@ -628,6 +628,7 @@
           isStyle = typeof this.options.highlightStyles === 'string',
           content = this.options.highlightStyles;
 
+
       //content = isStyle ? content : 'background-color: rgb(180, 213, 254)';
       content = isStyle ? content : 'text-decoration: line-through';
 
@@ -773,6 +774,4 @@
   } else {
     module.Highlighter = Highlighter;
   }
-
-
-}) (typeof module !== 'undefined' ? module : this, this, this.document);
+})(typeof module !== 'undefined' ? module : this, this, this.document);

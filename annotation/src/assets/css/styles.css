@@ -8,6 +8,12 @@
       height: 100%;
     }
     
+    /*striking out the text
+    .strike-text {
+      text-decoration: line-through;
+    }
+    */
+
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
@@ -74,6 +80,11 @@
       margin : 0.5%;
     }
 
+<<<<<<< HEAD
+    .annotaor-h1{
+      text-decoration: line-through !important;
+=======
     .annotator-suggest {
          text-decoration: line-through;
+>>>>>>> fd01f09c41cb7125d77eddef54aa3a9af25613f4
     }
