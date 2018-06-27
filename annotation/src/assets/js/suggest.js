@@ -44,24 +44,24 @@ window.onload = (function(Annotator){
         			if ($('#sugCheck').is(':checked') && $('#DesCheck').is(':checked')){ 
 			        	annotation.suggest = true;
 			        	annotation.describe = true;
-			        	console.log("checked both",annotation.suggest,annotation.describe);
-			        	console.log("annotated info",annotation.quote,annotation.ranges);
+			        	//console.log("checked both",annotation.suggest,annotation.describe);
+			        	//console.log("annotated info",annotation.quote,annotation.ranges);
 
 		        	}
 		        	else if ($('#sugCheck').is(':checked')) {
 		        		annotation.suggest = true;
 		        		annotation.describe = false;
-		      			console.log("checkedOnly suggest",annotation.suggest,annotation.describe);	
+		      			//console.log("checkedOnly suggest",annotation.suggest,annotation.describe);	
 		        	}
 		        	else if ($('#DesCheck').is(':checked')) {
 		        		annotation.suggest = false;
 		        		annotation.describe = true;
-		      			console.log("checkedOnly Describe ",annotation.suggest,annotation.describe);	
+		      			//console.log("checkedOnly Describe ",annotation.suggest,annotation.describe);	
 		        	}
 		        	else {
 		        		annotation.suggest = false;
 		        		annotation.describe = false;
-		      			console.log("notchecked any",annotation.suggest,annotation.describe);
+		      			//console.log("notchecked any",annotation.suggest,annotation.describe);
 		        	}
 		     //console.log("suggested text",suggtext);
 		     /*var temp = annotation;
@@ -79,29 +79,44 @@ window.onload = (function(Annotator){
         }//submit
       });//addfield
 
-      
 
       this.annotator
           .subscribe("annotationCreated", function (annotation) {
 	          	if(annotation.suggest == true){
-		            console.info("suggestclass value is::",myPlugin.options.suggestClass);
+		            //console.info("Editclass value is::",myPlugin.options.suggestClass);
 		            $(annotation.highlights).addClass(myPlugin.options.suggestClass);
-		            console.info("The annotation for suggest: %o has just been created!", annotation);
-		            new Annotation_structure(annotation);
+		            console.info("The annotation for editing: %o has just been created!", annotation);
+		            var Anno_base_template = new Annotation_structure(annotation);
+				    //console.log("This is Anno Struct template ",Anno_base_template);
+				    Anno_base_template.motivation = "editing";
+				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
+				    console.log("This is Anno Data Struct ",Anno_data_structure);
+
+
+
 	        		}
         		else if(annotation.describe == true){
-        			console.info("suggestclass value is::",myPlugin.options.describeClass);
+        			//console.info("suggestclass value is::",myPlugin.options.describeClass);
             		$(annotation.highlights).addClass(myPlugin.options.describeClass);
-            		console.info("The annotation for describe: %o has just been created!", annotation);
+            		console.info("The annotation for describing: %o has just been created!", annotation);
+            		var Anno_base_template = new Annotation_structure(annotation);
+            		Anno_base_template.motivation = "describing";
+				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
+				    console.log("This is Anno Data Struct ",Anno_data_structure);
         		}
         		else {
         			console.info("checkthestyle");
+        			var Anno_base_template = new Annotation_structure(annotation);
+            		//Anno_base_template.motivation = "describing";
+				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
+				    console.log("This is Anno Data Struct ",Anno_data_structure);
         		}
           })
 
  			.subscribe("beforeAnnotationCreated", function (annotation) {
             console.info("The BEFORE annotation: %o has just been created!", annotation)
           })
+ 			
 
     
           /* .subscribe("annotationEditorSubmit", function (editor, annotation) {
@@ -109,19 +124,23 @@ window.onload = (function(Annotator){
           })*/
 
         
-  };//pluginInit
+    };//pluginInit
 
-//==============================================================
+/*==============================================================*/
 Annotation_structure = function () {
-  this.creator = "ashwini",
-  this.body_anno =  "http://example.net/review1",
-  this.type = "Annotation",
-  this.motivation = "Comementing" 
-  return console.log(this);
-
-  }
-
-
+				  this.context = "http://www.w3.org/ns/anno.jsonld",
+				  this.id = "http://example.org/anno1",
+				  this.type = "Annotation",
+				  this.body =  "http://localhost:8080/Git_test/WebAnno/annotation/",
+				  this.target = "http://localhost:8080/Git_test/WebAnno/annotation/"
+				  this.creator = "ashwini",
+				  this.created = Date(),
+				  this.motivation = "Comementing" 
+				  return this;
+				  }
+  //var annt = Annotation_structure();
+  //console.log("Check",annt);
+  //var Anno_object = $.extend({},annt,annotation);
 //==============================================================
 
 /*Highlighter.prototype.suggest = function () {

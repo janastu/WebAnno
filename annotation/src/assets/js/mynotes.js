@@ -7,7 +7,7 @@
   
   App.init = function() {
 
-    console.log("init", new Date);
+    //console.log("init", new Date);
         /*
     initialize application here
     document.getElementById = window.jQuery || {};
@@ -108,20 +108,7 @@
          jQuery("#status").text("Online"); },*/
          offline: function () {
          jQuery("#status").text("Offline");
-         /*console.log("load offline plugin", this);*/
-
-          /*setAnnotationData: function (ann) {
-            // Add page specific data to the annotation on creation.
-            if (!ann.page) {
-              ann.page = getCurrentPage(); // getCurrentPage() would return the current page number
-            }
-          },
-          shouldLoadAnnotation: function (ann) {
-            // Return true if the annotation should be loaded into the current view.
-            return ann.page === getCurrentPage();
-          }*/
-
-         
+         /*console.log("load offline plugin", this);*/  
         }
 
        });
@@ -136,30 +123,24 @@
       $(App.ctx).annotator().annotator("addPlugin","SuggestEdit", "This is Annotation");
 
       
-
-
       /*$(App.ctx).annotator().annotator('addPlugin','Share');*/
 
     
      $(App.ctx).on('annotationCreated', function(anno) { 
               App.data = App.getAnnos(); //
               App.render();
+             // App.Annotation_structure(anno);
               //console.log(anno);
             });
+      }     
+/*======================================================
+App.Annotation_structure = function (annotation) {
+  this.creator = "ashwini",
+  this.body_anno =  "http://example.net/review1",
+  this.type = "Annotation",
+  this.motivation = "Comementing"
+  }*/
 
-      }
-      
-      /*jQuery("body").annotator().annotator("addPlugin","suggestion", {
-          suggest: function(){
-           jQuery("#status").Suggestion("suggests"); 
-         }
-      });*/
-       //App.cyancolor(annotator-hl);
-     
-    
-
-
- 
 
 /* ==========================================*/
 
@@ -337,7 +318,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
         App.dependency_Fun = function (dependency) {
                       var loaded = false;
-                      console.log("loading started", new Date);
+                      //console.log("loading started", new Date);
                       var head = [], body = [];
                       for(var i=0; i<dependency.length; i++){
 
@@ -345,8 +326,8 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                                 var script = document.createElement("script"); /* Make a script DOM node*/
                                 /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
                                 /* Set it"s src to the provided URL*/
-                                //script.src = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i];
-                                script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
+                                script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
+                                //script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
                                 script.type = "text/javascript";
                                 document.head.appendChild(script); 
                                 /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
@@ -357,14 +338,14 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
                               /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
-                              //link.href = "//localhost:8080/Git_test/WebAnno/WebAnno/annotation/"+dependency[i]; 
-                              link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
+                              link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
+                              //link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
                               document.head.appendChild(link); 
                              }
                       }
 
                       loaded = true;
-                      console.log("dependency loaded", loaded, head, new Date);
+                      //console.log("dependency loaded", loaded, head, new Date);
                       
                       App.SidebarTemplate();
                       App.init();
