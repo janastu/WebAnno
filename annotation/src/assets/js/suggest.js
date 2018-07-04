@@ -93,7 +93,7 @@ window.onload = (function(Annotator){
     				    Anno_base_template.motivation = "editing";
     				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
     				    console.log("This is Anno Data Struct ",Anno_data_structure);
-                console.log("setupannotation",annotation.setupAnnotation(Anno_data_structure));
+                //console.log("setupannotation",annotation.setupAnnotation(Anno_data_structure));
           }
 
 
