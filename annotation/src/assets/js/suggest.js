@@ -1,6 +1,8 @@
 window.onload = (function(Annotator){
 
 	Annotator = window.Annotator || Annotator;
+
+
 	Annotator.Plugin.SuggestEdit = function (element, message) {
     var myPlugin = {};
     //console.log("plugin created")
@@ -87,14 +89,14 @@ window.onload = (function(Annotator){
 		            $(annotation.highlights).addClass(myPlugin.options.suggestClass);
 		            console.info("The annotation for editing: %o has just been created!", annotation);
 		            var Anno_base_template = new Annotation_structure(annotation);
-				    //console.log("This is Anno Struct template ",Anno_base_template);
-				    Anno_base_template.motivation = "editing";
-				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
-				    console.log("This is Anno Data Struct ",Anno_data_structure);
+    				    //console.log("This is Anno Struct template ",Anno_base_template);
+    				    Anno_base_template.motivation = "editing";
+    				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
+    				    console.log("This is Anno Data Struct ",Anno_data_structure);
+                console.log("setupannotation",annotation.setupAnnotation(Anno_data_structure));
+          }
 
 
-
-	        		}
         		else if(annotation.describe == true){
         			//console.info("suggestclass value is::",myPlugin.options.describeClass);
             		$(annotation.highlights).addClass(myPlugin.options.describeClass);
@@ -104,12 +106,14 @@ window.onload = (function(Annotator){
 				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
 				    console.log("This is Anno Data Struct ",Anno_data_structure);
         		}
+
+
         		else {
-        			console.info("checkthestyle");
+        			//console.info("checkthestyle");
         			var Anno_base_template = new Annotation_structure(annotation);
-            		//Anno_base_template.motivation = "describing";
-				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
-				    console.log("This is Anno Data Struct ",Anno_data_structure);
+            	//Anno_base_template.motivation = "describing";
+  				    var Anno_data_structure = $.extend({},Anno_base_template,annotation);
+  				    console.log("This is Anno Data Struct ",Anno_data_structure);
         		}
           })
 
@@ -117,8 +121,6 @@ window.onload = (function(Annotator){
             console.info("The BEFORE annotation: %o has just been created!", annotation)
           })
  			
-
-    
           /* .subscribe("annotationEditorSubmit", function (editor, annotation) {
             console.info("The annotation with editor: %o %o has just been created!", editor, annotation)
           })*/
@@ -127,15 +129,15 @@ window.onload = (function(Annotator){
     };//pluginInit
 
 /*==============================================================*/
-Annotation_structure = function () {
+Annotation_structure = function (anno) {
 				  this.context = "http://www.w3.org/ns/anno.jsonld",
-				  this.id = "http://example.org/anno1",
+				  this.id = " ",
 				  this.type = "Annotation",
-				  this.body =  "http://localhost:8080/Git_test/WebAnno/annotation/",
-				  this.target = "http://localhost:8080/Git_test/WebAnno/annotation/"
+				  this.body = anno.text ,
+				  this.target = anno.quote,
 				  this.creator = "ashwini",
 				  this.created = Date(),
-				  this.motivation = "Comementing" 
+				  this.motivation = "Commenting" 
 				  return this;
 				  }
   //var annt = Annotation_structure();

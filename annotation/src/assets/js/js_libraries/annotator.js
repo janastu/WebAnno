@@ -14357,6 +14357,7 @@ var Promise = util.Promise;
 //
 // Returns an array of highlight Elements.
 function highlightRange(normedRange, cssClass) {
+	console.log(normedRange);
     if (typeof cssClass === 'undefined' || cssClass === null) {
         cssClass = 'annotator-hl';
     }

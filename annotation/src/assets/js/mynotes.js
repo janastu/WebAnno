@@ -133,18 +133,10 @@
               //console.log(anno);
             });
       }     
-/*======================================================
-App.Annotation_structure = function (annotation) {
-  this.creator = "ashwini",
-  this.body_anno =  "http://example.net/review1",
-  this.type = "Annotation",
-  this.motivation = "Comementing"
-  }*/
 
+/* ====================================================*/
 
-/* ==========================================*/
-
-  /*app code - front end for dialog box to appear*/
+  /*Function: for dialog box to appear*/
   function dialog(arg) {
       var x = document.createElement("DIALOG");
       var t = document.createTextNode(arg);
@@ -174,9 +166,7 @@ App.Annotation_structure = function (annotation) {
       linkElement.click();
   }
 
-
-
-       /* sidebar*/
+/*===================================================================================*/
 
     /*Function to generate HTML template for individual annotations*/
           
