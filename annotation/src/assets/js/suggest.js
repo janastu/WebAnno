@@ -44,26 +44,26 @@ window.onload = (function(Annotator){
         	//var temp = annotation;
 
         			if ($('#sugCheck').is(':checked') && $('#DesCheck').is(':checked')){ 
-			        	annotation.suggest = true;
+			        	annotation.edit = true;
 			        	annotation.describe = true;
-			        	//console.log("checked both",annotation.suggest,annotation.describe);
+			        	//console.log("checked both",annotation.edit,annotation.describe);
 			        	//console.log("annotated info",annotation.quote,annotation.ranges);
 
 		        	}
 		        	else if ($('#sugCheck').is(':checked')) {
-		        		annotation.suggest = true;
+		        		annotation.edit = true;
 		        		annotation.describe = false;
-		      			//console.log("checkedOnly suggest",annotation.suggest,annotation.describe);	
+		      			//console.log("checkedOnly suggest",annotation.edit,annotation.describe);	
 		        	}
 		        	else if ($('#DesCheck').is(':checked')) {
-		        		annotation.suggest = false;
+		        		annotation.edit = false;
 		        		annotation.describe = true;
-		      			//console.log("checkedOnly Describe ",annotation.suggest,annotation.describe);	
+		      			//console.log("checkedOnly Describe ",annotation.edit,annotation.describe);	
 		        	}
 		        	else {
-		        		annotation.suggest = false;
+		        		annotation.edit = false;
 		        		annotation.describe = false;
-		      			//console.log("notchecked any",annotation.suggest,annotation.describe);
+		      			//console.log("notchecked any",annotation.edit,annotation.describe);
 		        	}
 		     //console.log("suggested text",suggtext);
 		     /*var temp = annotation;
@@ -84,7 +84,7 @@ window.onload = (function(Annotator){
 
       this.annotator
           .subscribe("annotationCreated", function (annotation) {
-	          	if(annotation.suggest == true){
+	          	if(annotation.edit == true){
 		            //console.info("Editclass value is::",myPlugin.options.suggestClass);
 		            $(annotation.highlights).addClass(myPlugin.options.suggestClass);
 		            console.info("The annotation for editing: %o has just been created!", annotation);
