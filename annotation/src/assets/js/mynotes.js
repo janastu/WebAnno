@@ -171,7 +171,7 @@
     /*Function to generate HTML template for individual annotations*/
           
 
-     var annoTemplate=function(selected_text){
+    /* var annoTemplate=function(selected_text){
         return `<ul class="nav nav-pills nav-stacked">
                 <li class="list-of-annotations"> 
                   <div class="anno-sidebar-text">
@@ -184,8 +184,20 @@
                 </li>
               </ul>
             <br>`
-      }
+      }*/
 
+/*------------------------------------------------------------------------------------*/
+var annoTemplate=function(selected_text){
+    var view = {
+     text : selected_text.text,
+     quote : selected_text.quote ,
+     tags : selected_text.tags 
+   };
+    var template = "<ul class='nav nav-pills nav-stacked'> <li class='list-of-annotations'><div class='anno-sidebar-text'><ul class='annotation-header list-group'><li class='annotation-text'> <strong>Body:</strong>  {{text}} <br><strong> Target:</strong> {{quote}} <br><strong> Tags:</strong>  {{tags}}   </li></ul></div></li></ul><br>";
+    var html = Mustache.to_html(template, view);
+        /*$('#sampleArea').html(html);*/
+    return html;
+      }
 
 /* ==================================================================================
 Below function is used to iterate over annotated data and compile with html template*/
@@ -216,6 +228,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
               var nodes = [];
               for(var i=0;i < App.data.length;i++){
+                /*console.log("initial data", App.data[i]);*/
                   nodes.push(document.createRange().createContextualFragment(annoTemplate(JSON.parse(App.data[i]))));
                 }
 
@@ -315,9 +328,9 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
                           if(dependency[i].substr(dependency[i].length-3) === ".js"){
                                 var script = document.createElement("script"); /* Make a script DOM node*/
-                                script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                                //script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
                                 /* Set it"s src to the provided URL*/
-                                /*script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];*/
+                                script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
                                 /*script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; */
                                 script.type = "text/javascript";
                                 document.head.appendChild(script); 
@@ -328,8 +341,8 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                             
                               var link = document.createElement("link"); 
                               link.rel = "stylesheet";
-                              link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
-                              /*link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; */
+                              //link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                              link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
                               //link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
                               document.head.appendChild(link); 
                              }
