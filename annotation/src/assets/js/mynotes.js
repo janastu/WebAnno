@@ -316,45 +316,67 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                           // "src/assets/js/js_libraries/annotator-full.1.2.10/annotator.min.css",
                           // "src/assets/js/js_libraries/anno.touch/annotator.touch.css",
                           "src/assets/css/bundle.css",
-                          "src/assets/js/bundle/bundle.js"
+                          "src/assets/js/bundle/bundle.min.js"
                          //"src/assets/js/suggest.js"
                           ];
 
         App.dependency_Fun = function (dependency) {
-                      var loaded = false;
+                      //var loaded = false;
                       //console.log("loading started", new Date);
                       var head = [], body = [];
-                      for(var i=0; i<dependency.length; i++){
 
-                          if(dependency[i].substr(dependency[i].length-3) === ".js"){
-                                var script = document.createElement("script"); /* Make a script DOM node*/
-                                //script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
-                                /* Set it"s src to the provided URL*/
-                                script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
-                                /*script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; */
-                                script.type = "text/javascript";
-                                document.head.appendChild(script); 
-                                /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
-                            }
-                          
+                      var promise = new Promise(function(resolve,reject){
+                        if(dependency.length){
+
+                                for(var i=0; i<dependency.length; i++){
+
+                                    if(dependency[i].substr(dependency[i].length-3) === ".js"){
+                                          var script = document.createElement("script"); /* Make a script DOM node*/
+                                          /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
+                                              /* Set it"s src to the provided URL*/
+                                          script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
+                                          /*script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; */
+                                          script.type = "text/javascript";
+                                          document.head.appendChild(script); 
+                                          /* Add it to the end of the head section of the page (could change "head" to "body" to add it to the end of the body section instead)*/
+                                      }
+                                  
+                                  else{
+                                    
+                                      var link = document.createElement("link"); 
+                                      link.rel = "stylesheet";
+                                      /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
+                                      link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
+                                      //link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
+                                      document.head.appendChild(link); 
+                                     }
+                                }
+
+                            setTimeout(() => resolve("All files are loaded!"), 1000);
+                          }
+
                           else{
-                            
-                              var link = document.createElement("link"); 
-                              link.rel = "stylesheet";
-                              //link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
-                              link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
-                              //link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
-                              document.head.appendChild(link); 
-                             }
-                      }
+                                setTimeout(() => reject(new Error("Whoops!")), 1000);
+                          }
 
-                      loaded = true;
-                      //console.log("dependency loaded", loaded, head, new Date);
-                      
-                      App.SidebarTemplate();
-                      App.init();
+                      });
 
-           }
+                      promise.then(
+                           function(result) { 
+                            console.log("loadingdependencies_with_promise:",result);
+                            App.SidebarTemplate();
+                            App.init();
+                                             },
+                          function(error) { console.log(error); }
+                      );
+
+                      /*loaded = true;*/
+                      /*console.log("dependency loaded", loaded, head, new Date);*/
+
+           }/*End of the App.dependency_Fun()*/
+
+
+
         App.dependency_Fun(App.dependencies);
         
 })();
