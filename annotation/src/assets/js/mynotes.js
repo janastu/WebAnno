@@ -279,7 +279,7 @@ Below function is used to createTemplate for adding annotations to the sidebar C
          for (var i=0; i <= imgarr.length ; i++){
            anno.makeAnnotatable(imgarr[i]);
          }
-      }*/
+      }
 
 /*===============================================================================*/
 /* Function to use location   */
@@ -332,9 +332,9 @@ Below function is used to createTemplate for adding annotations to the sidebar C
 
                                     if(dependency[i].substr(dependency[i].length-3) === ".js"){
                                           var script = document.createElement("script"); /* Make a script DOM node*/
-                                          /*script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
+                                          script.src = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
                                               /* Set it"s src to the provided URL*/
-                                          script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];
+                                          /*script.src = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i];*/
                                           /*script.src = "//localhost:8080/WebAnno/annotation/"+dependency[i]; */
                                           script.type = "text/javascript";
                                           document.head.appendChild(script); 
@@ -345,9 +345,9 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                                     
                                       var link = document.createElement("link"); 
                                       link.rel = "stylesheet";
-                                      /*link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];*/
-                                      link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; 
-                                      //link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; 
+                                      link.href = "//janastu.github.io/WebAnno/annotation/"+dependency[i];
+                                      /*link.href = "//localhost:8080/Git_test/WebAnno/annotation/"+dependency[i]; */
+                                      /*link.href = "//localhost:8080/WebAnno/annotation/"+dependency[i]; */
                                       document.head.appendChild(link); 
                                      }
                                 }
