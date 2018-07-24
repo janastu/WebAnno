@@ -74,17 +74,17 @@
             if (t.length) {
                 for (var o = 0; o < t.length; o++) if (".js" === t[o].substr(t[o].length - 3)) {
                     var a = document.createElement("script");
-                    a.src = "//janastu.github.io/WebAnno/annotation/" + t[o], a.type = "text/javascript", 
+                    a.src = "//localhost:8080/Git_test/WebAnno/annotation/" + t[o], a.type = "text/javascript", 
                     document.head.appendChild(a);
                 } else {
                     var r = document.createElement("link");
-                    r.rel = "stylesheet", r.href = "//janastu.github.io/WebAnno/annotation/" + t[o], 
+                    r.rel = "stylesheet", r.href = "//localhost:8080/Git_test/WebAnno/annotation/" + t[o], 
                     document.head.appendChild(r);
                 }
                 setTimeout(() => n("All files are loaded!"), 1e3);
             } else setTimeout(() => e(new Error("Whoops!")), 1e3);
         }).then(function(t) {
-            console.log("loadingdependencies_with_promise:", t), App.SidebarTemplate(), App.init();
+            console.log("loadingdependencies_using_promise:", t), App.SidebarTemplate(), App.init();
         }, function(t) {
             console.log(t);
         });

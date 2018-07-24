@@ -44,6 +44,7 @@ var _ref,__bind=function(a,b){return function(){return a.apply(b,arguments)}},__
 
 
 
+/*=================================Including Annotator.js library=================================*/
 
 /*jshint immed:false*/ /*globals Range*/
 (function (module, window, document) {
@@ -1483,12 +1484,8 @@ var _ref,__bind=function(a,b){return function(){return a.apply(b,arguments)}},__
 window.onload = (function(Annotator){
 
 	Annotator = window.Annotator || Annotator;
-
-
 	Annotator.Plugin.SuggestEdit = function (element, message) {
     var myPlugin = {};
-    /*console.log("plugin created")*/
-
     myPlugin.options = {
     /* The CSS class to apply to drawn highlights*/
     suggestClass: 'annotator-editing',
@@ -1498,22 +1495,17 @@ window.onload = (function(Annotator){
     combinedClass: 'annotator-combined'
     }
 
-
-
     myPlugin.pluginInit = function () {
     	
-    	myPlugin.suggester = function(annotation){
+    	/*myPlugin.suggester = function(annotation){
     		console.log(this.annotator.setupAnnotation(annotation));
-    	};
-
+    	};*/
 
       this.annotator.viewer.addField({
         load: function (field, annotation) {
           field.innerHTML = message;
         }
       });
-
-
 
       this.annotator.editor.addField({
       	load: function (field, annotation) {
