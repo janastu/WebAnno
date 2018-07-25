@@ -352,11 +352,15 @@ Below function is used to createTemplate for adding annotations to the sidebar C
                                      }
                                 }
 
-                            setTimeout(() => resolve("All files are loaded!"), 1000);
+                            //setTimeout(() => resolve("All files are loaded!"), 1000);
+                            setTimeout(function(){ resolve("All files are loaded!")}, 1000);
+
                           }
 
                           else{
-                                setTimeout(() => reject(new Error("Whoops!")), 1000);
+                                //setTimeout(() => reject(new Error("Whoops!")), 1000);
+                                setTimeout(function() {reject(new Error("Whoops!"))}, 1000);
+
                           }
 
                       });
